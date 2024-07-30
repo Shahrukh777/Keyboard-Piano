@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piano Key Sounds</title>
+</head>
+<body>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const sounds = {};
+  const numKeys = 24;
+
+  // Load all sound files
+  for (let i = 1; i <= numKeys; i++) {
+    const audio = new Audio(`keys/key${i}.ogg`);
+    sounds[`Key${String.fromCharCode(64 + i)}`] = audio;
+  }
+
+  document.addEventListener('keydown', (event) => {
+    const sound = sounds[event.code];
+    console.log(sound);
+    if (sound) {
+      sound.currentTime = 0;
+      sound.play();
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
